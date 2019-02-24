@@ -5,10 +5,10 @@ class Search extends Component {
   render() {
     return(
       <div className="App-search">
-        <form>
-          <label for="booksearch">Search book:</label>
+        <form onSubmit={this.props.searchBooks}>
+          <label htmlFor="booksearch">Search book:</label>
           <input type="text" name="name" placeholder="Search for book" id="booksearch" />
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Submit"/>
         </form>
       </div>
     );
@@ -17,24 +17,54 @@ class Search extends Component {
 
 class BookCard extends Component {
   render() {
-    return(
-      <div>
+    var singleBook = this.props.books.map((book) => {
+      // uses same function as Map.js to match results
+      return (
+        <li>
+          {book.volumeInfo.title}
+        </li>
+      )
+    })
 
+    return (
+        <div>
+        {singleBook}
       </div>
-    );
+
+    )
   }
 }
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+      this.state = {
+        books: []
+      };
+  }
+
+  searchBooks = (e) => {
+    e.preventDefault();
+    fetch('https://www.googleapis.com/books/v1/volumes?q=harry+potter')
+    .then(function(response) {
+      return response.json();
+    })
+    .then(book => {
+      this.setState({ books: book.items })
+    });
+
+  }
+
   render() {
     return (
       <div className="App">
         <div className="App-header">
           <h1>Book Finder</h1>
-          <Search />
+          <Search searchBooks={this.searchBooks} />
         </div>
-
-        <BookCard />
+        <div id="App-books">
+          <BookCard books={this.state.books} />
+        </div>
       </div>
     );
   }
