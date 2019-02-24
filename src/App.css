@@ -94,7 +94,8 @@ label {
   display: none;
 }
 
-button:hover {
+button:hover,
+input:hover {
   background-color: #870d4c;
   cursor: pointer;
 }
