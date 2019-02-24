@@ -18,7 +18,6 @@ class Search extends Component {
 class BookCard extends Component {
   render() {
     var singleBook = this.props.books.map((book) => {
-      // uses same function as Map.js to match results
       return (
         <li key={book.volumeInfo.title} className="book-card">
           <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title} />
