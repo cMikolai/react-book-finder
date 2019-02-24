@@ -65,7 +65,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <h1>Book Finder</h1>
+          <h1>BOOK FINDER</h1>
           <Search searchBooks={this.searchBooks} />
         </div>
         <div id="App-books">

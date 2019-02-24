@@ -1,5 +1,18 @@
+body {
+  background-color: #f2f2f3;
+}
+
 h1 {
   margin-top: 0;
+  color: #a4a4a6;
+}
+
+h2 {
+  font-size: 14px;
+}
+
+p {
+  font-size: 12px;
 }
 
 .App {
@@ -13,7 +26,7 @@ h1 {
 }
 
 .App-header {
-  background-color: #282c34;
+  /*background-color: #282c34;*/
   min-height: 25vh;
   display: flex;
   flex-direction: column;
@@ -28,11 +41,73 @@ h1 {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+img {
+  float: left;
+  height: auto;
+  width: 40%;
+  max-width: 180px;
+  height: auto;
+  margin-right: 20px;
+  box-shadow: 2px 3px 3px 0px #0000003b;
+  margin-top: -30px;
+  margin-bottom: 50px;
+}
+
+li.book-card {
+  list-style: none;
+  width: 40%;
+  height: 250px;
+  float: left;
+  margin: 15px;
+  padding: 15px;
+  background-color: #fff;
+  text-align: left;
+  box-shadow: 2px 3px 3px 0px #0000003b;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px;
+  background-color: #550024;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+}
+
+input {
+  padding: 10px;
+  background-color: #550024;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  margin-right: 5px;
+  border: 1px solid #550024;
+}
+
+input#booksearch {
+  width: 50vw;
+  background-color: #fff;
+  border: 1px solid #550024;
+}
+
+label {
+  display: none;
+}
+
+button:hover {
+  background-color: #870d4c;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+  li.book-card {
+    width: 85%;
+    margin: 10px;
+    height: auto;
   }
-  to {
-    transform: rotate(360deg);
+
+  img {
+    margin-top: -30px;
+    margin-bottom: 10px;
   }
 }
