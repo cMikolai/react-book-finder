@@ -7,7 +7,7 @@ class Search extends Component {
       <div className="App-search">
         <form onSubmit={this.props.searchBooks}>
           <label htmlFor="booksearch">Search book:</label>
-          <input type="text" name="name" placeholder="Search for book" id="booksearch" />
+          <input type="text" name="name" placeholder="Search for book" id="booksearch" value={this.props.input} onChange={this.props.onChange} />
           <input type="submit" value="Submit"/>
         </form>
       </div>
@@ -44,18 +44,25 @@ class App extends Component {
   constructor(props) {
     super(props);
       this.state = {
-        books: []
+        books: [],
+        input: ''
       };
   }
 
+  onChange = (event) => this.setState({ input: event.target.value });
+
   searchBooks = (e) => {
     e.preventDefault();
-    fetch('https://www.googleapis.com/books/v1/volumes?q=harry+potter')
+
+    let url = `https://www.googleapis.com/books/v1/volumes?q=${this.state.input}`;
+
+    fetch(url)
     .then(function(response) {
       return response.json();
     })
     .then(book => {
       this.setState({ books: book.items })
+      console.log(url)
     });
 
   }
@@ -65,7 +72,7 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <h1>BOOK FINDER</h1>
-          <Search searchBooks={this.searchBooks} />
+          <Search searchBooks={this.searchBooks} value={this.state.input} onChange={this.onChange} />
         </div>
         <div id="App-books">
           <BookCard books={this.state.books} />
