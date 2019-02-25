@@ -45,7 +45,8 @@ class App extends Component {
     super(props);
       this.state = {
         books: [],
-        input: ''
+        input: '',
+        loading: false
       };
   }
 
@@ -56,15 +57,14 @@ class App extends Component {
 
     let url = `https://www.googleapis.com/books/v1/volumes?q=${this.state.input}`;
 
+    this.setState({loading: true})
     fetch(url)
     .then(function(response) {
       return response.json();
     })
     .then(book => {
-      this.setState({ books: book.items })
-      console.log(url)
+      this.setState({ books: book.items, loading: false })
     });
-
   }
 
   render() {
@@ -74,9 +74,13 @@ class App extends Component {
           <h1>BOOK FINDER</h1>
           <Search searchBooks={this.searchBooks} value={this.state.input} onChange={this.onChange} />
         </div>
-        <div id="App-books">
-          <BookCard books={this.state.books} />
-        </div>
+
+        {this.state.loading
+					? "Loading ..."
+					: <div id="App-books">
+              <BookCard books={this.state.books} />
+            </div>}
+
       </div>
     );
   }
