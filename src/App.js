@@ -69,14 +69,35 @@ class App extends Component {
     let url = `https://www.googleapis.com/books/v1/volumes?q=${this.state.input}`;
 
     this.setState({loading: true})
+    this.clearFetchErrorMessage()
     fetch(url)
     .then(function(response) {
       return response.json();
     })
     .then(book => {
       this.setState({ books: book.items, loading: false })
-    });
+    })
+    .catch(error => this.failedFetch('', error),
+      this.setState({ loading: false })
+    );
   }
+
+  clearFetchErrorMessage = (e) => {
+   var errorInfo = document.querySelector('.error-info')
+   if (errorInfo) {
+    errorInfo.remove()
+   }
+ }
+
+  failedFetch = (e) => {
+   var appContainer = document.querySelector('.App')
+   var errorInfo = document.createElement('div')
+   var errorInfoP = document.createTextNode("Sorry, but the books cannot be loaded.");
+   appContainer.append(errorInfo)
+   errorInfo.appendChild(errorInfoP)
+
+   errorInfo.className += 'error-info'
+ }
 
   render() {
     return (
