@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import NoBook from './nobook.png'
 
 class Search extends Component {
   render() {
@@ -19,8 +20,13 @@ class BookCard extends Component {
   render() {
     var singleBook = this.props.books.map((book) => {
       return (
-        <li key={book.volumeInfo.title} className="book-card">
-          <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title} />
+        <li key={book.id} className="book-card">
+          <img
+            src={book.volumeInfo.imageLinks
+              ? book.volumeInfo.imageLinks.thumbnail
+              : NoBook}
+            alt={book.volumeInfo.title}
+          />
           <h2>{book.volumeInfo.title}</h2>
           <p>by {book.volumeInfo.authors}</p>
           <p>Published by {book.volumeInfo.publisher}</p>
