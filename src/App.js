@@ -7,7 +7,7 @@ class Search extends Component {
       <div className="App-search">
         <form onSubmit={this.props.searchBooks}>
           <label htmlFor="booksearch">Search book:</label>
-          <input type="text" name="name" placeholder="Search for book" id="booksearch" value={this.props.input} onChange={this.props.onChange} />
+          <input type="text" name="name" placeholder="Search for book" id="booksearch" value={this.props.input} required='required' onChange={this.props.onChange} />
           <input type="submit" value="Submit"/>
         </form>
       </div>
