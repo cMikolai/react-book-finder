@@ -88,6 +88,7 @@ input#booksearch {
   width: 50vw;
   background-color: #fff;
   border: 1px solid #550024;
+  color: black;
 }
 
 label {
