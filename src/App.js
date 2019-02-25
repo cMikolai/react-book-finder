@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 import NoBook from './nobook.png'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBook } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faBook)
 
 class Search extends Component {
   render() {
@@ -77,7 +82,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <h1>BOOK FINDER</h1>
+          <h1><FontAwesomeIcon icon="book" /> BOOK FINDER</h1>
           <Search searchBooks={this.searchBooks} value={this.state.input} onChange={this.onChange} />
         </div>
 
