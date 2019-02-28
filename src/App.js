@@ -43,8 +43,10 @@ class BookCard extends Component {
     })
 
     return (
-      <div>
-        {singleBook}
+      <div id="App-books">
+        <ul>
+         {singleBook}
+        </ul>
       </div>
 
     )
@@ -119,9 +121,8 @@ class App extends Component {
 
         {this.state.loading
 					? "Loading ..."
-					: <div id="App-books">
-              <BookCard books={this.state.books} />
-            </div>}
+					: <BookCard books={this.state.books} />
+        }
 
       </div>
     );
