@@ -35,7 +35,7 @@ class BookCard extends Component {
             alt={book.volumeInfo.title}
           />
           <h2>{book.volumeInfo.title}</h2>
-          <p>by {book.volumeInfo.authors ? book.volumeInfo.authors : 'Unknown'}</p>
+          <p>by {book.volumeInfo.authors ? book.volumeInfo.authors.join(", ") : 'Unknown'}</p>
           <p>Published by {book.volumeInfo.publisher ? book.volumeInfo.publisher : 'Unknown'}</p>
           <a href={book.volumeInfo.previewLink}>
             <button >See this Book</button>
