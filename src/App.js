@@ -3,9 +3,9 @@ import './App.css';
 import NoBook from './nobook.png'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBook, faExclamationCircle } from '@fortawesome/free-solid-svg-icons'
+import { faBook, faExclamationCircle, faSearch } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faBook, faExclamationCircle)
+library.add(faBook, faExclamationCircle, faSearch)
 
 class Search extends Component {
   render() {
@@ -14,7 +14,9 @@ class Search extends Component {
         <form onSubmit={this.props.searchBooks}>
           <label htmlFor="booksearch">Search book:</label>
           <input type="text" name="name" placeholder="Search for book" id="booksearch" value={this.props.input} required='required' onChange={this.props.onChange} />
-          <input type="submit" value="Submit"/>
+          <button type="submit" className="search-submit" value="Submit">
+            <FontAwesomeIcon icon="search" />
+          </button>
         </form>
       </div>
     );
