@@ -46,18 +46,25 @@ img {
   height: auto;
   width: 40%;
   max-width: 180px;
-  height: auto;
+  max-height: 240px;
   margin-right: 20px;
   box-shadow: 2px 3px 3px 0px #0000003b;
   margin-top: -30px;
-  margin-bottom: 50px;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
 }
 
 li.book-card {
   list-style: none;
   width: 40%;
-  height: 250px;
-  float: left;
+  height: 230px;
   margin: 15px;
   padding: 15px;
   background-color: #fff;
@@ -107,7 +114,7 @@ input:hover {
   color: red;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
   li.book-card {
     width: 85%;
     margin: 10px;
