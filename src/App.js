@@ -3,9 +3,9 @@ import './App.css';
 import NoBook from './nobook.png'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBook } from '@fortawesome/free-solid-svg-icons'
+import { faBook, faExclamationCircle } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faBook)
+library.add(faBook, faExclamationCircle)
 
 class Search extends Component {
   render() {
@@ -57,6 +57,7 @@ class App extends Component {
       this.state = {
         books: [],
         input: '',
+        invalidInput: false,
         loading: false
       };
   }
@@ -75,7 +76,11 @@ class App extends Component {
       return response.json();
     })
     .then(book => {
-      this.setState({ books: book.items, loading: false })
+      if (book.items) {
+        this.setState({ books: book.items, loading: false, invalidInput: false })
+      } else {
+        this.setState({ invalidInput: true })
+      }
     })
     .catch(error => this.failedFetch('', error),
       this.setState({ loading: false })
@@ -106,6 +111,11 @@ class App extends Component {
           <h1><FontAwesomeIcon icon="book" /> BOOK FINDER</h1>
           <Search searchBooks={this.searchBooks} value={this.state.input} onChange={this.onChange} />
         </div>
+
+        {this.state.invalidInput
+          ? <div className="invalid-input"><FontAwesomeIcon icon="exclamation-circle" /> Invalid search input. Please try again.</div>
+          : null
+        }
 
         {this.state.loading
 					? "Loading ..."

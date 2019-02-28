@@ -101,6 +101,12 @@ input:hover {
   cursor: pointer;
 }
 
+.invalid-input {
+  margin-top: -20px;
+  margin-bottom: 25px;
+  color: red;
+}
+
 @media screen and (max-width: 500px) {
   li.book-card {
     width: 85%;
