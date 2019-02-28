@@ -59,6 +59,7 @@ class App extends Component {
   constructor(props) {
     super(props);
       this.state = {
+        beforeSearch: true,
         books: [],
         input: '',
         invalidInput: false,
@@ -81,7 +82,7 @@ class App extends Component {
     })
     .then(book => {
       if (book.items) {
-        this.setState({ books: book.items, loading: false, invalidInput: false })
+        this.setState({ books: book.items, loading: false, invalidInput: false, beforeSearch: false })
       } else {
         this.setState({ invalidInput: true })
       }
@@ -111,7 +112,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
+        <div className="App-header" style={this.state.beforeSearch ? {height: "100vh"} : {minHeight: "25vh", padding: "30px"}}>
           <h1><FontAwesomeIcon icon="book" /> BOOK FINDER</h1>
           <Search searchBooks={this.searchBooks} value={this.state.input} onChange={this.onChange} />
         </div>
