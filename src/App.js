@@ -34,22 +34,23 @@ class Search extends Component {
 class BookCard extends Component {
   render() {
     var singleBook = this.props.books.map((book) => {
+      let { imageLinks, title, authors, publisher, previewLink   } = book.volumeInfo
       return (
         <li key={book.id} className="book-card">
           <img
-            src={book.volumeInfo.imageLinks
-              ? book.volumeInfo.imageLinks.thumbnail
+            src={imageLinks
+              ? imageLinks.thumbnail
               : NoBook}
-            alt={book.volumeInfo.title}
+            alt={title}
           />
-          <h2>{book.volumeInfo.title}</h2>
-          <p>by {book.volumeInfo.authors
-            ? book.volumeInfo.authors.join(", ")
+          <h2>{title}</h2>
+          <p>by {authors
+            ? authors.join(", ")
             : 'Unknown'}</p>
-          <p>Published by {book.volumeInfo.publisher
-            ? book.volumeInfo.publisher
+          <p>Published by {publisher
+            ? publisher
             : 'Unknown'}</p>
-          <a href={book.volumeInfo.previewLink}>
+          <a href={previewLink}>
             <button >See this Book</button>
           </a>
         </li>
