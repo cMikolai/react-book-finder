@@ -26,6 +26,13 @@ class Search extends Component {
             }
           </button>
         </form>
+
+        {this.props.invalidInput
+          ? <div className="invalid-input">
+              <FontAwesomeIcon icon="exclamation-circle" /> Invalid search input. Please try again.
+            </div>
+          : null
+        }
       </div>
     );
   }
@@ -106,7 +113,7 @@ class App extends Component {
           invalidInput: false,
           beforeSearch: false })
       } else {
-        this.setState({ invalidInput: true })
+        this.setState({ invalidInput: true, loading: false })
       }
     }).catch(error => this.failedFetch('', error));
   }
@@ -119,7 +126,7 @@ class App extends Component {
  }
 
   failedFetch = (e) => {
-   var appContainer = document.querySelector('.App')
+   var appContainer = document.querySelector('.App-search')
    var errorInfo = document.createElement('div')
    var errorInfoP = document.createTextNode("Sorry, but the books cannot be loaded.");
    appContainer.append(errorInfo)
@@ -145,15 +152,9 @@ class App extends Component {
             searchBooks={this.searchBooks}
             value={this.state.input}
             onInputChange={this.onInputChange}
-            loading={this.state.loading} />
+            loading={this.state.loading}
+            invalidInput={this.state.invalidInput} />
         </div>
-
-        {this.state.invalidInput
-          ? <div className="invalid-input">
-              <FontAwesomeIcon icon="exclamation-circle" /> Invalid search input. Please try again.
-            </div>
-          : null
-        }
 
         {this.state.loading
 					? null

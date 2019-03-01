@@ -116,9 +116,16 @@ button:hover {
 }
 
 .invalid-input {
-  margin-top: -20px;
+  margin-top: 15px;
   margin-bottom: 25px;
   color: red;
+  font-size: 18px;
+}
+
+.error-info {
+  color: red;
+  margin-top: 15px;
+  font-size: 18px;
 }
 
 @media screen and (max-width: 600px) {
