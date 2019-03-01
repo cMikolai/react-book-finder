@@ -3,9 +3,9 @@ import './App.css';
 import NoBook from './nobook.png'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBook, faExclamationCircle, faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faBook, faExclamationCircle, faSearch, faSpinner } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faBook, faExclamationCircle, faSearch)
+library.add(faBook, faExclamationCircle, faSearch, faSpinner)
 
 class Search extends Component {
   render() {
@@ -15,7 +15,10 @@ class Search extends Component {
           <label htmlFor="booksearch">Search book:</label>
           <input type="text" name="name" placeholder="Search for book" id="booksearch" value={this.props.input} required='required' onChange={this.props.onChange} />
           <button type="submit" className="search-submit" value="Submit">
-            <FontAwesomeIcon icon="search" />
+            {this.props.loading
+              ? <FontAwesomeIcon icon="spinner" />
+              : <FontAwesomeIcon icon="search" />
+            }
           </button>
         </form>
       </div>
@@ -70,24 +73,29 @@ class App extends Component {
   onChange = (event) => this.setState({ input: event.target.value });
 
   searchBooks = (e) => {
+    this.clearFetchErrorMessage();
     e.preventDefault();
 
     let url = `https://www.googleapis.com/books/v1/volumes?q=${this.state.input}`;
 
-    this.setState({loading: true})
-    this.clearFetchErrorMessage()
+    this.setState({
+      loading: true
+    });
+    
     fetch(url)
     .then(function(response) {
       return response.json();
-    })
-    .then(book => {
+    }).then(book => {
       if (book.items) {
-        this.setState({ books: book.items, loading: false, invalidInput: false, beforeSearch: false })
+        this.setState({
+          books: book.items,
+          loading: false,
+          invalidInput: false,
+          beforeSearch: false })
       } else {
         this.setState({ invalidInput: true })
       }
-    })
-    .catch(error => this.failedFetch('', error),
+    }).catch(error => this.failedFetch('', error),
       this.setState({ loading: false })
     );
   }
@@ -114,7 +122,7 @@ class App extends Component {
       <div className="App">
         <div className="App-header" style={this.state.beforeSearch ? {height: "100vh"} : {minHeight: "25vh", padding: "30px"}}>
           <h1><FontAwesomeIcon icon="book" /> BOOK FINDER</h1>
-          <Search searchBooks={this.searchBooks} value={this.state.input} onChange={this.onChange} />
+          <Search searchBooks={this.searchBooks} value={this.state.input} onChange={this.onChange} loading={this.state.loading} />
         </div>
 
         {this.state.invalidInput
@@ -123,7 +131,7 @@ class App extends Component {
         }
 
         {this.state.loading
-					? "Loading ..."
+					? null
 					: <BookCard books={this.state.books} />
         }
 
