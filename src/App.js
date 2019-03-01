@@ -108,9 +108,7 @@ class App extends Component {
       } else {
         this.setState({ invalidInput: true })
       }
-    }).catch(error => this.failedFetch('', error),
-      this.setState({ loading: false })
-    );
+    }).catch(error => this.failedFetch('', error));
   }
 
   clearFetchErrorMessage = (e) => {
@@ -128,6 +126,10 @@ class App extends Component {
    errorInfo.appendChild(errorInfoP)
 
    errorInfo.className += 'error-info'
+
+   this.setState({
+     loading: false
+   })
  }
 
   render() {
