@@ -13,7 +13,12 @@ class Search extends Component {
       <div className="App-search">
         <form onSubmit={this.props.searchBooks}>
           <label htmlFor="booksearch">Search book:</label>
-          <input type="text" name="name" placeholder="Search for book" id="booksearch" value={this.props.input} required='required' onChange={this.props.onChange} />
+          <input type="text" name="name"
+            placeholder="Search for book"
+            id="booksearch"
+            value={this.props.input}
+            required='required'
+            onChange={this.props.onChange} />
           <button type="submit" className="search-submit" value="Submit">
             {this.props.loading
               ? <FontAwesomeIcon icon="spinner" spin />
@@ -38,8 +43,12 @@ class BookCard extends Component {
             alt={book.volumeInfo.title}
           />
           <h2>{book.volumeInfo.title}</h2>
-          <p>by {book.volumeInfo.authors ? book.volumeInfo.authors.join(", ") : 'Unknown'}</p>
-          <p>Published by {book.volumeInfo.publisher ? book.volumeInfo.publisher : 'Unknown'}</p>
+          <p>by {book.volumeInfo.authors
+            ? book.volumeInfo.authors.join(", ")
+            : 'Unknown'}</p>
+          <p>Published by {book.volumeInfo.publisher
+            ? book.volumeInfo.publisher
+            : 'Unknown'}</p>
           <a href={book.volumeInfo.previewLink}>
             <button >See this Book</button>
           </a>
@@ -120,13 +129,23 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header" style={this.state.beforeSearch ? {height: "100vh"} : {minHeight: "25vh", padding: "30px"}}>
+        <div className="App-header"
+          style={this.state.beforeSearch
+          ? {height: "100vh"}
+          : {minHeight: "25vh", padding: "30px"}}>
+
           <h1><FontAwesomeIcon icon="book" /> BOOK FINDER</h1>
-          <Search searchBooks={this.searchBooks} value={this.state.input} onChange={this.onChange} loading={this.state.loading} />
+          <Search
+            searchBooks={this.searchBooks}
+            value={this.state.input}
+            onChange={this.onChange}
+            loading={this.state.loading} />
         </div>
 
         {this.state.invalidInput
-          ? <div className="invalid-input"><FontAwesomeIcon icon="exclamation-circle" /> Invalid search input. Please try again.</div>
+          ? <div className="invalid-input">
+              <FontAwesomeIcon icon="exclamation-circle" /> Invalid search input. Please try again.
+            </div>
           : null
         }
 
