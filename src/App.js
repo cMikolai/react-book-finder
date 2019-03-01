@@ -16,7 +16,7 @@ class Search extends Component {
           <input type="text" name="name" placeholder="Search for book" id="booksearch" value={this.props.input} required='required' onChange={this.props.onChange} />
           <button type="submit" className="search-submit" value="Submit">
             {this.props.loading
-              ? <FontAwesomeIcon icon="spinner" spin="true" />
+              ? <FontAwesomeIcon icon="spinner" spin />
               : <FontAwesomeIcon icon="search" />
             }
           </button>
