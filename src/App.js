@@ -18,7 +18,7 @@ class Search extends Component {
             id="booksearch"
             value={this.props.input}
             required='required'
-            onChange={this.props.onChange} />
+            onChange={this.props.onInputChange} />
           <button type="submit" className="search-submit" value="Submit">
             {this.props.loading
               ? <FontAwesomeIcon icon="spinner" spin />
@@ -80,7 +80,10 @@ class App extends Component {
       };
   }
 
-  onChange = (event) => this.setState({ input: event.target.value });
+  onInputChange = (event) =>
+    this.setState({
+      input: event.target.value
+    });
 
   searchBooks = (e) => {
     this.clearFetchErrorMessage();
@@ -139,7 +142,7 @@ class App extends Component {
           <Search
             searchBooks={this.searchBooks}
             value={this.state.input}
-            onChange={this.onChange}
+            onInputChange={this.onInputChange}
             loading={this.state.loading} />
         </div>
 
