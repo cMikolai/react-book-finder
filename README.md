@@ -1,4 +1,14 @@
+# Book Finder
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Code Dependencies
+
+The app is built with the following code dependencies:
+
+1. [React](https://github.com/facebook/React)
+2. [Google Books API Family](https://developers.google.com/books/)
+3. [Font Awesome](https://fontawesome.com/how-to-use/on-the-web/using-with/react)
 
 ## Available Scripts
 
