@@ -73,7 +73,7 @@ class BookCard extends Component {
     return (
       <div id="App-books">
         <ul>
-         {singleBook}
+         {!this.props.invalidInput ? singleBook : null}
         </ul>
       </div>
 
@@ -164,7 +164,9 @@ class App extends Component {
 
         {this.state.loading
 					? null
-					: <BookCard books={this.state.books} />
+					: <BookCard
+              books={this.state.books}
+              invalidInput={this.state.invalidInput} />
         }
 
       </div>
