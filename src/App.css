@@ -52,6 +52,20 @@ img {
   margin-top: -30px;
 }
 
+.powered-by-google {
+  float: right;
+  max-width: 20%;
+  height: auto;
+  margin: 15px;
+  box-shadow: none;
+}
+
+.preview {
+  max-width: 20%;
+  margin-top: 0;
+  box-shadow: none;
+}
+
 ul {
   display: flex;
   flex-wrap: wrap;

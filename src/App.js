@@ -14,7 +14,7 @@ class Search extends Component {
         <form onSubmit={this.props.searchBooks}>
           <label htmlFor="booksearch">Search book:</label>
           <input type="text" name="name"
-            placeholder="Search for book"
+            placeholder="Search books"
             id="booksearch"
             value={this.props.input}
             required='required'
@@ -26,6 +26,8 @@ class Search extends Component {
             }
           </button>
         </form>
+
+        <a href="https://www.google.com/"><img className="powered-by-google" src="https://books.google.com/googlebooks/images/poweredby.png" alt="Powered by Google" /></a>
 
         {this.props.invalidInput
           ? <div className="invalid-input">
@@ -57,9 +59,13 @@ class BookCard extends Component {
           <p>Published by {publisher
             ? publisher
             : 'Unknown'}</p>
+          <p>
           <a href={previewLink}>
-            <button >See this Book</button>
+            {/*<button >See this Book</button>*/}
+            <img className="preview" alt="preview" src="https://www.google.com/intl/en/googlebooks/images/gbs_preview_button1.png" />
           </a>
+          {/*<img className="preview" alt="preview" src="https://www.google.com/intl/en/googlebooks/images/gbs_preview_sticker1.png" />*/}
+          </p>
         </li>
       )
     })
